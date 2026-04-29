@@ -4,30 +4,26 @@
 <div class="container py-4">
 
     <div class="row g-4">
-
-        {{-- إضافة تفاصيل --}}
         <div class="col-lg-4">
             <div class="card shadow-sm border-0">
-
                 <div class="card-header bg-warning text-dark">
                     <h5 class="mb-0">تفاصيل المنتج</h5>
                 </div>
-
                 <div class="card-body">
 
                     <form action="{{ route('save_details') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         {{-- الاسم --}}
-                        <input type="text"
-                               name="name"
-                               class="form-control mb-1 @error('name') is-invalid @enderror"
-                               placeholder="اسم المنتج"
-                               value="{{ old('name') }}">
-
-                        @error('name')
-                            <div class="text-danger small mb-2">{{ $message }}</div>
-                        @enderror
+                        {{-- اختيار المنتج --}}
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">اختيار المنتج </label>
+                            <select name="product_id" class="form-select">
+                                @foreach($product as $product)
+                                <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
                         {{-- السعر --}}
                         <input type="number"
@@ -53,7 +49,7 @@
                             <div class="text-danger small mb-2">{{ $message }}</div>
                         @enderror
 
-                        {{-- ⭐ التقييم (كما هو بدون أي تغيير) --}}
+                        {{--  التقييم  --}}
                         <div class="mb-3">
                             <label class="form-label mb-1">التقييم</label>
 

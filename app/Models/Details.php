@@ -14,6 +14,8 @@ class Details extends Model
         'rating',
         'description',
         'image',
+        'product_id',
+
     ];
     
 }
